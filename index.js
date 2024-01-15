@@ -22,8 +22,8 @@ app.get('/', async (req, res) => {
     try {
         const resp = await axios.get(characters, { headers });
         const data = resp.data.results;
-        //res.render('homepage', { title: 'List custom object records | Integrating With HubSpot I Practicum', data });
-        res.json(data);   
+        res.render('homepage', { title: 'List custom object records | Integrating With HubSpot I Practicum', data });
+        //res.json(data);   
     } catch (error) {
         console.error(error);
     }
