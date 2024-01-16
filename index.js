@@ -31,7 +31,36 @@ app.get('/', async (req, res) => {
 
 // TODO: ROUTE 2 - Create a new app.get route for the form to create or update new custom object data. Send this data along in the next route.
 
+app.get('/update-cobj', async (req, res) => {
+    res.render('Updates', { title: 'Add custom object record | Integrating With HubSpot I Practicum' });
+});
+
 // TODO: ROUTE 3 - Create a new app.post route for the custom objects form to create or update your custom object data. Once executed, redirect the user to the homepage.
+
+app.post('/update-cobj', async (req, res) => {
+
+    const character = {
+        properties: {
+            "name": req.body.name,
+            "power_level": req.body.power_level,
+            "type": req.body.type
+        }
+    }
+    
+    const createCharacterUrl = 'https://api.hubspot.com/crm/v3/objects/2-22500567';
+    
+    const headers = {
+        Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
+        'Content-Type': 'application/json'
+    }
+    
+    try {
+        await axios.post(createCharacterUrl, character, { headers });
+        res.redirect('/');  
+    } catch (error) {
+        console.error(error);
+    }
+});
 
 // * Code for Route 3 goes here
 
