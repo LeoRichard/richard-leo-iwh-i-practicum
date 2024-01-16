@@ -6,8 +6,16 @@ html
         link(rel="stylesheet", href="/css/style.css")
     body    
         h1 Characters
-        .cards 
-            each character in data
-                .card 
-                    h2.card__name #{character.properties.name}  KI: #{character.properties.power_level}
-                    p.card__email #{character.properties.type}
+        a(href='/update-cobj') Add/Update this table
+        table
+            thead
+                tr 
+                    th Name 
+                    th KI 
+                    th Type
+            tbody 
+                each character in data
+                    tr
+                        td #{character.properties.name}  
+                        td #{character.properties.power_level}
+                        td #{character.properties.type}
